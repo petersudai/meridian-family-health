@@ -1,0 +1,54 @@
+---
+import { NAV, SITE } from "../lib/site";
+---
+
+<footer class="border-t border-ink/10 bg-forest-dark text-cream/80">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
+      <div>
+        <a href="/" class="flex items-center gap-2">
+          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 font-display text-base font-semibold text-white">
+            M
+          </span>
+          <span class="font-display text-lg font-semibold text-white">{SITE.name}</span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-cream/60">
+          Whole-family primary care with same-week appointments, transparent pricing, and doctors who know your name.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-display text-sm font-semibold uppercase tracking-wide text-cream/50">Explore</p>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          {NAV.map((item) => (
+            <li><a href={item.href} class="text-cream/70 transition hover:text-white">{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display text-sm font-semibold uppercase tracking-wide text-cream/50">Hours</p>
+        <ul class="mt-4 space-y-2.5 text-sm text-cream/70">
+          {SITE.hours.map((h) => (
+            <li class="flex justify-between gap-4"><span>{h.day}</span><span class="text-cream/50">{h.time}</span></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display text-sm font-semibold uppercase tracking-wide text-cream/50">Visit us</p>
+        <address class="mt-4 space-y-1 text-sm text-cream/70 not-italic">
+          <p>{SITE.address.line1}</p>
+          <p>{SITE.address.line2}</p>
+        </address>
+        <a href={SITE.phoneHref} class="mt-3 block text-sm font-semibold text-white">{SITE.phone}</a>
+        <a href={`mailto:${SITE.email}`} class="mt-1 block text-sm text-cream/70 transition hover:text-white">{SITE.email}</a>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
+      <p>Design portfolio piece. Not a real medical practice.</p>
+    </div>
+  </div>
+</footer>

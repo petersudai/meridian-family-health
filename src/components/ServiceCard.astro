@@ -1,0 +1,27 @@
+---
+import Icon, { type IconName } from "./Icon";
+
+interface Props {
+  name: string;
+  summary: string;
+  icon: IconName;
+  href?: string;
+}
+
+const { name, summary, icon, href } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+
+<Tag href={href} class:list={["group flex h-full flex-col rounded-3xl border border-ink/8 bg-paper p-7 transition hover:-translate-y-1 hover:border-forest/30 hover:shadow-xl hover:shadow-forest/5", href && "cursor-pointer"]}>
+  <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-forest-light text-forest transition group-hover:bg-forest group-hover:text-white">
+    <Icon name={icon} className="h-6 w-6" />
+  </span>
+  <h3 class="mt-5 font-display text-xl font-semibold text-ink">{name}</h3>
+  <p class="mt-2.5 text-sm leading-relaxed text-ink-soft">{summary}</p>
+  {href && (
+    <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+      Learn more
+      <Icon name="arrowright" className="h-4 w-4 transition group-hover:translate-x-1" />
+    </span>
+  )}
+</Tag>

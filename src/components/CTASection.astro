@@ -1,0 +1,36 @@
+---
+import BookingWidget from "./BookingWidget";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Ready to feel like more than a patient number?",
+  description = "Same-week appointments are open now. Tell us what you need and our care team will confirm within one business hour.",
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-forest-dark py-20 sm:py-24">
+  <div
+    class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-terracotta/20 blur-3xl"
+  ></div>
+  <div
+    class="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-forest/40 blur-3xl"
+  ></div>
+
+  <div class="relative mx-auto max-w-3xl px-6 text-center lg:px-8">
+    <h2 class="font-display text-3xl font-semibold text-white text-balance sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg">{description}</p>
+    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <BookingWidget client:load label="Book an Appointment" />
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+      >
+        Contact the practice
+      </a>
+    </div>
+  </div>
+</section>

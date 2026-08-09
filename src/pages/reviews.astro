@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import CTASection from "../components/CTASection.astro";
+import Icon from "../components/Icon";
+import { TESTIMONIALS, SITE } from "../lib/site";
+---
+
+<Layout
+  title={`Patient Reviews | ${SITE.name}`}
+  description="Read what patients say about their experience at Meridian Family Health, from same-day urgent visits to long-term chronic care management."
+>
+  <!-- Page hero -->
+  <section class="bg-forest-light/60">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-wider text-terracotta">Patient reviews</p>
+      <h1 class="mt-3 max-w-2xl font-display text-4xl font-semibold text-ink text-balance sm:text-5xl">
+        What our patients say.
+      </h1>
+      <div class="mt-6 flex items-center gap-3">
+        <div class="flex text-terracotta">
+          {Array.from({ length: 5 }).map(() => <Icon name="star" className="h-5 w-5 fill-current" />)}
+        </div>
+        <span class="text-lg font-semibold text-ink">4.9 out of 5</span>
+        <span class="text-sm text-ink-soft">based on 640+ verified patient reviews</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews grid -->
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {TESTIMONIALS.map((t) => (
+        <TestimonialCard name={t.name} context={t.context} quote={t.quote} avatar={t.avatar as any} rating={t.rating} />
+      ))}
+    </div>
+  </section>
+
+  <CTASection
+    title="Add your own story"
+    description="Book your first visit and see why patients across the community are making Meridian their long-term care home."
+  />
+</Layout>

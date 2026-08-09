@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DoctorCard from "../components/DoctorCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { DOCTORS, SITE } from "../lib/site";
+---
+
+<Layout
+  title={`Our Team | ${SITE.name}`}
+  description="Meet the physicians and nurse practitioners at Meridian Family Health, a small team dedicated to knowing every patient by name."
+>
+  <!-- Page hero -->
+  <section class="bg-forest-light/60">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-wider text-terracotta">Our team</p>
+      <h1 class="mt-3 max-w-2xl font-display text-4xl font-semibold text-ink text-balance sm:text-5xl">
+        A small team, on purpose.
+      </h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+        We keep our patient panels smaller than most practices so every doctor here has time to actually know
+        you. Here is who you will see.
+      </p>
+    </div>
+  </section>
+
+  <!-- Team grid -->
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {DOCTORS.map((doctor) => (
+        <DoctorCard
+          slug={doctor.slug}
+          name={doctor.name}
+          role={doctor.role}
+          bio={doctor.bio}
+          education={doctor.education}
+          image={doctor.image as any}
+        />
+      ))}
+    </div>
+  </section>
+
+  <CTASection
+    title="Ready to meet your new doctor?"
+    description="Choose a provider, or let us match you with the first available physician for your visit."
+  />
+</Layout>
