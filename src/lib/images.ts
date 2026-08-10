@@ -20,7 +20,7 @@ export const IMAGES = {
   doctorFemale1: "1559839734-2b71ea197ec2",
   doctorMale1: "1612349317150-e413f6a5b16d",
   doctorFemale2: "1623854767648-e7bb8009f0db",
-  doctorMale2: "1612531386530-97286d97c2d2",
+  doctorMale2: "1622253694238-3b22139576c6",
   nurse1: "1484863137850-59afcfe05386",
 
   patientAvatar1: "1580489944761-15a19d654956",
