@@ -5,7 +5,7 @@ export function img(id: string, w = 1600, q = 80): string {
 }
 
 export const IMAGES = {
-  heroConsult: "1631217868264-e5b90bb7e133",
+  heroPortrait: "1550831107-1553da8c8464",
   heroConsultAlt: "1576765974257-b414b9ea0051",
   clinicInterior: "1777269749032-d8d458ae594d",
   clinicInteriorAlt: "1762625570087-6d98fca29531",
