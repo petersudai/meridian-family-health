@@ -12,22 +12,20 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-forest-dark py-20 sm:py-24">
-  <div
-    class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-terracotta/20 blur-3xl"
-  ></div>
-  <div
-    class="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-forest/40 blur-3xl"
-  ></div>
-
-  <div class="relative mx-auto max-w-3xl px-6 text-center lg:px-8">
-    <h2 class="font-display text-3xl font-semibold text-white text-balance sm:text-4xl">{title}</h2>
-    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg">{description}</p>
-    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+<section class="relative overflow-hidden bg-night bg-chart-grid py-20 sm:py-28" data-meridian="Book">
+  <div class="relative mx-auto max-w-3xl px-6 text-center lg:px-8" data-reveal>
+    <p class="flex items-center justify-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold">
+      <span class="h-px w-4 bg-current"></span>
+      Same-week availability
+      <span class="h-px w-4 bg-current"></span>
+    </p>
+    <h2 class="mt-5 font-display text-3xl font-extrabold text-paper text-balance sm:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-paper/65 sm:text-lg">{description}</p>
+    <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
       <BookingWidget client:load label="Book an Appointment" />
       <a
         href="/contact"
-        class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+        class="inline-flex items-center justify-center border border-paper/25 px-6 py-3 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:border-paper"
       >
         Contact the practice
       </a>

@@ -24,47 +24,51 @@ export default function MobileMenu({ currentPath }: { currentPath: string }) {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="rounded-full p-2 text-ink transition hover:bg-forest-light cursor-pointer"
+        className="flex items-center gap-2 border border-ink/15 px-3 py-2 text-ink transition hover:border-ink cursor-pointer"
       >
-        <Menu className="h-6 w-6" />
+        <Menu className="h-4 w-4" />
+        <span className="font-mono text-[10px] uppercase tracking-[0.16em]">Menu</span>
       </button>
 
       {open &&
         createPortal(
-          <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
-            <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
-            <div className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col bg-paper px-6 py-6 shadow-2xl">
+          <div className="fixed inset-0 z-50 bg-night" role="dialog" aria-modal="true">
+            <div className="flex h-full flex-col px-6 py-6">
               <div className="flex items-center justify-between">
-                <span className="font-display text-lg font-semibold text-ink">{SITE.shortName}</span>
+                <span className="font-display text-xl font-extrabold uppercase tracking-tight text-paper">
+                  {SITE.shortName}
+                </span>
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="rounded-full p-2 text-ink-soft transition hover:bg-forest-light hover:text-ink cursor-pointer"
+                  className="flex items-center gap-2 border border-paper/20 px-3 py-2 text-paper transition hover:border-paper cursor-pointer"
                 >
-                  <X className="h-6 w-6" />
+                  <X className="h-4 w-4" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em]">Close</span>
                 </button>
               </div>
 
-              <nav className="mt-10 flex flex-col gap-1">
-                {NAV.map((item) => (
+              <nav className="mt-14 flex flex-1 flex-col justify-center gap-1">
+                {NAV.map((item, i) => (
                   <a
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className={`rounded-xl px-3 py-3 text-base font-medium transition ${
-                      currentPath === item.href ? "bg-forest-light text-forest" : "text-ink hover:bg-forest-light"
+                    className={`group flex items-baseline gap-4 border-t border-paper/10 py-4 first:border-t-0 ${
+                      currentPath === item.href ? "text-gold" : "text-paper"
                     }`}
                   >
-                    {item.label}
+                    <span className="font-mono text-xs text-paper/35">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-display text-3xl font-bold uppercase tracking-tight transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">
+                      {item.label}
+                    </span>
                   </a>
                 ))}
               </nav>
 
-              <div className="mt-auto border-t border-ink/10 pt-6 text-sm text-ink-soft">
-                <a href={SITE.phoneHref} className="block font-semibold text-ink">
-                  {SITE.phone}
-                </a>
-                <p className="mt-1">{SITE.address.line1}</p>
+              <div className="flex flex-col gap-1 border-t border-paper/10 pt-6 font-mono text-xs text-paper/60">
+                <a href={SITE.phoneHref} className="text-paper">{SITE.phone}</a>
+                <p>{SITE.address.line1}</p>
               </div>
             </div>
           </div>,

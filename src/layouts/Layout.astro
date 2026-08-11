@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import MeridianLine from "../components/MeridianLine";
 import "../styles/global.css";
 
 interface Props {
@@ -34,10 +35,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://meridian
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class="antialiased">
+    <MeridianLine client:load />
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
+    <script src="../scripts/reveal.ts"></script>
   </body>
 </html>

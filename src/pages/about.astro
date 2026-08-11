@@ -12,10 +12,13 @@ import { SITE } from "../lib/site";
   description="Learn the story behind Meridian Family Health, our mission, and why we built a practice around continuity of care instead of rushed appointments."
 >
   <!-- Page hero -->
-  <section class="bg-forest-light/60">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-      <p class="text-sm font-semibold uppercase tracking-wider text-terracotta">About {SITE.shortName}</p>
-      <h1 class="mt-3 max-w-2xl font-display text-4xl font-semibold text-ink text-balance sm:text-5xl">
+  <section class="bg-paper bg-chart-grid-light" data-meridian="About">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
+      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
+        <span class="h-px w-4 bg-current"></span>
+        About {SITE.shortName}
+      </p>
+      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
         Built by doctors who were tired of ten-minute appointments.
       </h1>
       <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
@@ -26,18 +29,18 @@ import { SITE } from "../lib/site";
   </section>
 
   <!-- Story -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Story">
     <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
-      <div class="overflow-hidden rounded-[2rem]">
+      <div class="duotone aspect-[4/5]" data-reveal>
         <img
           src={img(IMAGES.teamMeeting, 1200)}
           alt="Meridian Family Health care team meeting to review patient care plans"
-          class="aspect-[4/5] w-full object-cover"
+          class="h-full w-full object-cover"
         />
       </div>
-      <div>
+      <div data-reveal>
         <SectionHeading eyebrow="Our story" title="Founded on continuity, not throughput" />
-        <div class="mt-6 space-y-4 text-base leading-relaxed text-ink-soft">
+        <div class="mt-6 space-y-4 border-l-2 border-ink/10 pl-6 text-base leading-relaxed text-ink-soft">
           <p>
             In 2008, Dr. Amara Whitfield left a large hospital system frustrated by a schedule that gave her
             eleven minutes per patient. She opened Meridian with two exam rooms and a promise: every patient
@@ -59,13 +62,13 @@ import { SITE } from "../lib/site";
   </section>
 
   <!-- Mission -->
-  <section class="bg-forest-dark py-20 sm:py-24">
-    <div class="mx-auto max-w-4xl px-6 text-center lg:px-8">
-      <Icon name="sparkles" className="mx-auto h-8 w-8 text-terracotta" />
-      <h2 class="mt-5 font-display text-3xl font-semibold text-white text-balance sm:text-4xl">
+  <section class="border-y border-ink/10 bg-night bg-chart-grid py-20 sm:py-24" data-meridian="Mission">
+    <div class="mx-auto max-w-4xl px-6 text-center lg:px-8" data-reveal>
+      <Icon name="sparkles" className="mx-auto h-7 w-7 text-gold" />
+      <h2 class="mt-5 font-display text-3xl font-extrabold text-paper text-balance sm:text-4xl">
         Our mission is simple: give every patient the appointment they deserve.
       </h2>
-      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-cream/70">
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-paper/65">
         Unhurried. Well-informed. Priced honestly. We measure success by how well we know our patients, not by
         how many we can see in a day.
       </p>
@@ -73,21 +76,17 @@ import { SITE } from "../lib/site";
   </section>
 
   <!-- Facility -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Facility">
     <SectionHeading eyebrow="Our facility" title="A calmer place to see a doctor" align="center" />
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="overflow-hidden rounded-3xl sm:col-span-2 sm:row-span-2">
-        <img
-          src={img(IMAGES.clinicInterior, 1200)}
-          alt="Bright, modern waiting area at Meridian Family Health"
-          class="aspect-[16/10] w-full object-cover sm:aspect-square"
-        />
+    <div class="mt-12 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+      <div class="duotone aspect-[16/10] sm:col-span-2 sm:row-span-2 sm:aspect-auto">
+        <img src={img(IMAGES.clinicInterior, 1200)} alt="Bright, modern waiting area at Meridian Family Health" class="h-full w-full object-cover" />
       </div>
-      <div class="overflow-hidden rounded-3xl">
-        <img src={img(IMAGES.reception, 700)} alt="Reception desk at Meridian Family Health" class="aspect-square w-full object-cover" />
+      <div class="duotone duotone-gold aspect-square">
+        <img src={img(IMAGES.reception, 700)} alt="Reception desk at Meridian Family Health" class="h-full w-full object-cover" />
       </div>
-      <div class="overflow-hidden rounded-3xl">
-        <img src={img(IMAGES.waitingRoom, 700)} alt="Comfortable seating in the patient waiting room" class="aspect-square w-full object-cover" />
+      <div class="duotone duotone-gold aspect-square">
+        <img src={img(IMAGES.waitingRoom, 700)} alt="Comfortable seating in the patient waiting room" class="h-full w-full object-cover" />
       </div>
     </div>
   </section>

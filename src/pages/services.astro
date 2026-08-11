@@ -21,10 +21,13 @@ const SERVICE_IMAGES: Record<string, keyof typeof IMAGES> = {
   description="Explore primary care, pediatric care, women's health, chronic condition management, urgent visits, and telehealth at Meridian Family Health."
 >
   <!-- Page hero -->
-  <section class="bg-forest-light/60">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-      <p class="text-sm font-semibold uppercase tracking-wider text-terracotta">Services</p>
-      <h1 class="mt-3 max-w-2xl font-display text-4xl font-semibold text-ink text-balance sm:text-5xl">
+  <section class="bg-paper bg-chart-grid-light" data-meridian="Services">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
+      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
+        <span class="h-px w-4 bg-current"></span>
+        Services
+      </p>
+      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
         Care for every stage of life, under one roof.
       </h1>
       <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
@@ -36,24 +39,27 @@ const SERVICE_IMAGES: Record<string, keyof typeof IMAGES> = {
 
   <!-- Service detail list -->
   <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
-    <div class="space-y-16">
+    <div class="divide-y divide-ink/10">
       {SERVICES.map((service, i) => (
-        <div id={service.slug} class="grid scroll-mt-28 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div class:list={[i % 2 === 1 && "lg:order-2"]}>
-            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-forest text-white">
-              <Icon name={service.icon as any} className="h-6 w-6" />
-            </span>
-            <h2 class="mt-5 font-display text-2xl font-semibold text-ink sm:text-3xl">{service.name}</h2>
+        <div id={service.slug} data-meridian={service.name} class="grid scroll-mt-28 gap-10 py-16 first:pt-0 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div class:list={[i % 2 === 1 && "lg:order-2"]} data-reveal>
+            <div class="flex items-center gap-4">
+              <span class="font-mono text-xs text-ink/35">{String(i + 1).padStart(2, "0")}</span>
+              <span class="flex h-11 w-11 items-center justify-center bg-ink text-gold">
+                <Icon name={service.icon as any} className="h-5 w-5" />
+              </span>
+            </div>
+            <h2 class="mt-5 font-display text-2xl font-extrabold text-ink sm:text-3xl">{service.name}</h2>
             <p class="mt-4 text-base leading-relaxed text-ink-soft">{service.detail}</p>
             <div class="mt-6">
               <BookingWidget client:load label={`Book ${service.name}`} initialServiceSlug={service.slug} />
             </div>
           </div>
-          <div class:list={["overflow-hidden rounded-[2rem]", i % 2 === 1 && "lg:order-1"]}>
+          <div class:list={["duotone aspect-[4/3]", i % 2 === 1 && "lg:order-1"]} data-reveal>
             <img
               src={img(IMAGES[SERVICE_IMAGES[service.slug]], 1100)}
               alt={service.name}
-              class="aspect-[4/3] w-full object-cover"
+              class="h-full w-full object-cover"
               loading="lazy"
             />
           </div>

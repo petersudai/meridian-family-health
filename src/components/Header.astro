@@ -6,22 +6,24 @@ import MobileMenu from "./MobileMenu";
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 border-b border-ink/5 bg-cream/90 backdrop-blur-md">
+<header class="sticky top-0 z-40 border-b border-ink/10 bg-paper/92 backdrop-blur-md">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-    <a href="/" class="flex items-center gap-2">
-      <span class="flex h-9 w-9 items-center justify-center rounded-full bg-forest font-display text-base font-semibold text-white">
-        M
+    <a href="/" class="group flex items-baseline gap-2.5">
+      <span class="font-display text-xl font-extrabold uppercase tracking-tight text-ink">
+        {SITE.shortName}
       </span>
-      <span class="font-display text-lg font-semibold text-ink">{SITE.name}</span>
+      <span class="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-soft sm:inline">
+        Family&nbsp;Health
+      </span>
     </a>
 
-    <nav class="hidden items-center gap-8 lg:flex">
+    <nav class="hidden items-center gap-7 lg:flex">
       {NAV.map((item) => (
         <a
           href={item.href}
           class:list={[
-            "text-sm font-medium transition hover:text-forest",
-            currentPath === item.href ? "text-forest" : "text-ink-soft",
+            "font-mono text-[11px] uppercase tracking-[0.14em] transition-colors",
+            currentPath === item.href ? "text-gold-dark" : "text-ink-soft hover:text-ink",
           ]}
         >
           {item.label}
@@ -30,7 +32,7 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="hidden items-center gap-5 lg:flex">
-      <a href={SITE.phoneHref} class="text-sm font-semibold text-ink transition hover:text-forest">
+      <a href={SITE.phoneHref} class="font-mono text-[11px] tracking-wide text-ink-soft transition-colors hover:text-ink">
         {SITE.phone}
       </a>
       <BookingWidget client:load label="Book Now" />
