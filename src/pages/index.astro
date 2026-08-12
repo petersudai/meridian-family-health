@@ -31,7 +31,7 @@ const ticker = [
           <span class="h-px w-4 bg-current"></span>
           Est. 2008 &mdash; Cedar Falls
         </p>
-        <h1 class="mt-6 font-display text-[13vw] font-extrabold leading-[0.95] tracking-tight text-ink text-balance sm:text-6xl lg:text-[4.6rem]">
+        <h1 class="mt-6 font-display text-[13vw] font-extrabold leading-[1.08] tracking-tight text-ink text-balance sm:text-6xl sm:leading-[0.95] lg:text-[4.6rem]">
           Family medicine, <span class="text-gold-dark">calibrated</span> to a lifetime.
         </h1>
         <p class="mt-7 max-w-lg text-lg leading-relaxed text-ink-soft">
@@ -67,12 +67,12 @@ const ticker = [
         </div>
         <div class="absolute bottom-0 left-0 flex items-center gap-2 bg-ink px-3 py-2">
           <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
-          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/80">On call &mdash; Exam Room 2</span>
+          <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-paper/85">On call &mdash; Exam Room 2</span>
         </div>
       </div>
     </div>
 
-    <div class="mt-14 border-y border-ink/10 bg-ink py-3.5 lg:mt-8">
+    <div class="mt-14 border-y border-ink/10 bg-ink py-3.5 lg:mt-8" aria-hidden="true">
       <div class="flex overflow-hidden">
         <div class="flex flex-none animate-marquee items-center gap-10 whitespace-nowrap pr-10">
           {[...ticker, ...ticker].map((item) => (
@@ -136,7 +136,7 @@ const ticker = [
       <div class="grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2" data-reveal-group>
         {VALUES.map((value, i) => (
           <div class="bg-paper p-6">
-            <span class="font-mono text-xs text-ink/35">{String(i + 1).padStart(2, "0")}</span>
+            <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
             <span class="mt-3 flex h-9 w-9 items-center justify-center bg-ink/5 text-verdigris">
               <Icon name={value.icon as any} className="h-[18px] w-[18px]" />
             </span>
@@ -161,7 +161,7 @@ const ticker = [
         </p>
         <div class="mt-6 border-l-2 border-gold pl-4">
           <p class="font-semibold text-paper">{leadDoctor.name}</p>
-          <p class="font-mono text-xs uppercase tracking-wide text-paper/50">{leadDoctor.role}</p>
+          <p class="font-mono text-xs uppercase tracking-wide text-paper/70">{leadDoctor.role}</p>
         </div>
         <a href="/team" class="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:text-gold">
           Meet the full care team

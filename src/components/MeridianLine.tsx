@@ -78,12 +78,12 @@ export default function MeridianLine() {
         >
           <span
             className={`h-px transition-all duration-300 ${
-              i === activeIndex ? "w-3 bg-gold" : "w-1.5 bg-ink/25"
+              i === activeIndex ? "w-3 bg-gold-dark" : "w-1.5 bg-ink/40"
             }`}
           />
           <span
-            className={`font-mono text-[10px] uppercase tracking-[0.16em] transition-colors duration-300 ${
-              i === activeIndex ? "text-ink" : "text-ink/30"
+            className={`font-mono text-[11px] uppercase tracking-[0.16em] transition-colors duration-300 ${
+              i === activeIndex ? "font-medium text-ink" : "text-ink-soft"
             }`}
           >
             {wp.label}

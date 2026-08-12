@@ -27,7 +27,7 @@ export default function MobileMenu({ currentPath }: { currentPath: string }) {
         className="flex items-center gap-2 border border-ink/15 px-3 py-2 text-ink transition hover:border-ink cursor-pointer"
       >
         <Menu className="h-4 w-4" />
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em]">Menu</span>
+        <span className="font-mono text-xs uppercase tracking-[0.16em]">Menu</span>
       </button>
 
       {open &&
@@ -44,7 +44,7 @@ export default function MobileMenu({ currentPath }: { currentPath: string }) {
                   className="flex items-center gap-2 border border-paper/20 px-3 py-2 text-paper transition hover:border-paper cursor-pointer"
                 >
                   <X className="h-4 w-4" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.16em]">Close</span>
+                  <span className="font-mono text-xs uppercase tracking-[0.16em]">Close</span>
                 </button>
               </div>
 
@@ -58,7 +58,7 @@ export default function MobileMenu({ currentPath }: { currentPath: string }) {
                       currentPath === item.href ? "text-gold" : "text-paper"
                     }`}
                   >
-                    <span className="font-mono text-xs text-paper/35">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-xs text-paper/55">{String(i + 1).padStart(2, "0")}</span>
                     <span className="font-display text-3xl font-bold uppercase tracking-tight transition-transform duration-300 group-hover:translate-x-2 sm:text-4xl">
                       {item.label}
                     </span>

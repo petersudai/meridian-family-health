@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { Calendar, Check, ChevronLeft, ChevronRight, Loader2, Stethoscope, User, X } from "lucide-react";
 import { SERVICES, DOCTORS } from "../lib/site";
@@ -31,6 +31,7 @@ export default function BookingWidget({
   label?: string;
   initialServiceSlug?: string;
 }) {
+  const uid = useId();
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>(initialServiceSlug ? 2 : 1);
   const [serviceSlug, setServiceSlug] = useState<string | null>(initialServiceSlug ?? null);
@@ -236,34 +237,58 @@ export default function BookingWidget({
                   <div>
                     <h3 className="font-display text-xl font-bold text-ink">Your details</h3>
                     <p className="mt-1 text-sm text-ink-soft">We will confirm your visit by email or phone within one business hour.</p>
-                    <div className="mt-5 grid gap-3">
-                      <input
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Full name"
-                        className="border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 focus:border-gold-dark focus:outline-none"
-                      />
-                      <input
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="email"
-                        placeholder="Email address"
-                        className="border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 focus:border-gold-dark focus:outline-none"
-                      />
-                      <input
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        type="tel"
-                        placeholder="Phone number"
-                        className="border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 focus:border-gold-dark focus:outline-none"
-                      />
-                      <textarea
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Anything we should know before your visit? (optional)"
-                        rows={3}
-                        className="border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/60 focus:border-gold-dark focus:outline-none"
-                      />
+                    <div className="mt-5 grid gap-4">
+                      <div>
+                        <label htmlFor={`${uid}-name`} className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+                          Full name
+                        </label>
+                        <input
+                          id={`${uid}-name`}
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="Jordan Lee"
+                          className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor={`${uid}-email`} className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+                          Email address
+                        </label>
+                        <input
+                          id={`${uid}-email`}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          type="email"
+                          placeholder="you@email.com"
+                          className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor={`${uid}-phone`} className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+                          Phone number
+                        </label>
+                        <input
+                          id={`${uid}-phone`}
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          type="tel"
+                          placeholder="(555) 123-4567"
+                          className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor={`${uid}-notes`} className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+                          Notes <span className="text-ink-soft">(optional)</span>
+                        </label>
+                        <textarea
+                          id={`${uid}-notes`}
+                          value={notes}
+                          onChange={(e) => setNotes(e.target.value)}
+                          placeholder="Anything we should know before your visit?"
+                          rows={3}
+                          className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
+                        />
+                      </div>
                     </div>
 
                     <div className="mt-5 border-l-2 border-gold bg-paper-warm px-4 py-3.5 text-xs text-ink-soft">

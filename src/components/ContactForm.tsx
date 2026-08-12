@@ -38,32 +38,41 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="border border-ink/12 bg-paper p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">Full name</label>
+          <label htmlFor="contact-name" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+            Full name <span aria-hidden="true" className="text-ink">*</span>
+          </label>
           <input
+            id="contact-name"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Jordan Lee"
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 focus:border-gold-dark focus:outline-none"
+            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
           />
         </div>
         <div className="sm:col-span-1">
-          <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">Email</label>
+          <label htmlFor="contact-email" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+            Email <span aria-hidden="true" className="text-ink">*</span>
+          </label>
           <input
+            id="contact-email"
             required
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@email.com"
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 focus:border-gold-dark focus:outline-none"
+            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
           />
         </div>
         <div className="sm:col-span-2">
-          <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">Reason for contact</label>
+          <label htmlFor="contact-reason" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+            Reason for contact
+          </label>
           <select
+            id="contact-reason"
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-sm text-ink focus:border-gold-dark focus:outline-none"
+            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink focus:border-gold-dark focus:outline-none"
           >
             <option>General question</option>
             <option>New patient enquiry</option>
@@ -73,14 +82,17 @@ export default function ContactForm() {
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">Message</label>
+          <label htmlFor="contact-message" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+            Message <span aria-hidden="true" className="text-ink">*</span>
+          </label>
           <textarea
+            id="contact-message"
             required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={5}
             placeholder="How can we help?"
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 focus:border-gold-dark focus:outline-none"
+            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
           />
         </div>
       </div>

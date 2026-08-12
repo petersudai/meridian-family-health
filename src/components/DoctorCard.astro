@@ -29,7 +29,7 @@ const { name, role, bio, education, image, compact = false } = Astro.props;
     {!compact && (
       <>
         <p class="mt-3 text-sm leading-relaxed text-ink-soft">{bio}</p>
-        <p class="mt-4 font-mono text-[10px] leading-relaxed text-ink-soft/60">{education}</p>
+        <p class="mt-4 text-xs leading-relaxed text-ink-soft">{education}</p>
       </>
     )}
   </div>

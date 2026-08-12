@@ -35,9 +35,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://meridian
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class="antialiased">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <MeridianLine client:load />
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <Footer />

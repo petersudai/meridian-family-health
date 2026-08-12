@@ -44,7 +44,7 @@ const SERVICE_IMAGES: Record<string, keyof typeof IMAGES> = {
         <div id={service.slug} data-meridian={service.name} class="grid scroll-mt-28 gap-10 py-16 first:pt-0 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div class:list={[i % 2 === 1 && "lg:order-2"]} data-reveal>
             <div class="flex items-center gap-4">
-              <span class="font-mono text-xs text-ink/35">{String(i + 1).padStart(2, "0")}</span>
+              <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
               <span class="flex h-11 w-11 items-center justify-center bg-ink text-gold">
                 <Icon name={service.icon as any} className="h-5 w-5" />
               </span>

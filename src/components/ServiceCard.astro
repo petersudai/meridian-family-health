@@ -24,7 +24,7 @@ const Tag = href ? "a" : "div";
   <div>
     <div class="flex items-center justify-between">
       {index !== undefined && (
-        <span class="font-mono text-xs text-ink/35 transition-colors duration-300 group-hover:text-paper/40">
+        <span class="font-mono text-xs text-ink-soft transition-colors duration-300 group-hover:text-paper/70">
           {String(index).padStart(2, "0")}
         </span>
       )}
@@ -38,7 +38,7 @@ const Tag = href ? "a" : "div";
     </p>
   </div>
   {href && (
-    <span class="mt-6 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45 transition-colors duration-300 group-hover:text-gold">
+    <span class="mt-6 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft transition-colors duration-300 group-hover:text-gold">
       Learn more
       <Icon name="arrowright" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
     </span>
