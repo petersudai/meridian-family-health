@@ -2,97 +2,77 @@
 import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import CTASection from "../components/CTASection.astro";
-import Icon from "../components/Icon";
 import { img, IMAGES } from "../lib/images";
 import { SITE } from "../lib/site";
 ---
 
 <Layout
   title={`About Us | ${SITE.name}`}
-  description="Learn the story behind Meridian Family Health, our mission, and why we built a practice around continuity of care instead of rushed appointments."
+  description="The story behind Meridian Family Health, and why we built a practice around continuity of care instead of rushed appointments."
 >
-  <!-- Page hero -->
-  <section class="bg-paper bg-chart-grid-light" data-meridian="About">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
-      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-        <span class="h-px w-4 bg-current"></span>
-        About {SITE.shortName}
-      </p>
-      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
+  <section class="border-b border-ink/10 bg-paper" data-meridian="About">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <h1 class="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-ink text-balance sm:text-6xl">
         Built by doctors who were tired of ten-minute appointments.
       </h1>
-      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
-        Meridian Family Health started with a simple idea: patients deserve doctors who have time to actually
-        listen.
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+        The practice started with one rule: schedule enough time to listen.
       </p>
     </div>
   </section>
 
-  <!-- Story -->
   <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Story">
     <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
       <div class="duotone aspect-[4/5]" data-reveal>
         <img
           src={img(IMAGES.teamMeeting, 1200)}
-          alt="Meridian Family Health care team meeting to review patient care plans"
+          alt="The Meridian care team reviewing patient care plans together"
           class="h-full w-full object-cover"
         />
       </div>
       <div data-reveal>
-        <SectionHeading eyebrow="Our story" title="Founded on continuity, not throughput" />
-        <div class="mt-6 space-y-4 border-l-2 border-ink/10 pl-6 text-base leading-relaxed text-ink-soft">
+        <SectionHeading title="Founded on continuity, not throughput" />
+        <div class="mt-6 space-y-4 text-lg leading-relaxed text-ink-soft">
           <p>
-            In 2008, Dr. Amara Whitfield left a large hospital system frustrated by a schedule that gave her
-            eleven minutes per patient. She opened Meridian with two exam rooms and a promise: every patient
-            would be known, not just processed.
+            In 2008, Dr. Amara Whitfield left a large hospital system frustrated by a schedule that gave her eleven
+            minutes per patient. She opened Meridian with two exam rooms and one rule: every patient gets known.
           </p>
           <p>
-            Eighteen years later, that promise has scaled to a full team of physicians and nurse practitioners,
-            but the model has not changed. Smaller patient panels. Longer appointments. Doctors who read your
-            chart before you sit down, not while you are talking.
+            Eighteen years later the practice has grown into a team of physicians and nurse practitioners, and the
+            model is the same. Patient panels stay small and appointments stay long, and your doctor reads your chart
+            before you sit down.
           </p>
           <p>
-            Today, Meridian cares for more than 12,000 patients across three generations of the same families,
-            with same-week scheduling, transparent pricing, and a telehealth option for the visits that do not
-            need an exam table.
+            Today Meridian cares for more than 12,000 patients, many of them across three generations of the same
+            family. Appointments are available within the week, prices are quoted in advance, and video visits cover
+            anything that does not need an exam table.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Mission -->
-  <section class="border-y border-ink/10 bg-night bg-chart-grid py-20 sm:py-24" data-meridian="Mission">
-    <div class="mx-auto max-w-4xl px-6 text-center lg:px-8" data-reveal>
-      <Icon name="sparkles" className="mx-auto h-7 w-7 text-gold" />
-      <h2 class="mt-5 font-display text-3xl font-extrabold text-paper text-balance sm:text-4xl">
-        Our mission is simple: give every patient the appointment they deserve.
-      </h2>
-      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-paper/65">
-        Unhurried. Well-informed. Priced honestly. We measure success by how well we know our patients, not by
-        how many we can see in a day.
-      </p>
-    </div>
-  </section>
-
-  <!-- Facility -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Facility">
-    <SectionHeading eyebrow="Our facility" title="A calmer place to see a doctor" align="center" />
-    <div class="mt-12 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
-      <div class="duotone aspect-[16/10] sm:col-span-2 sm:row-span-2 sm:aspect-auto">
-        <img src={img(IMAGES.clinicInterior, 1200)} alt="Bright, modern waiting area at Meridian Family Health" class="h-full w-full object-cover" />
+  <section class="bg-paper-warm py-20 sm:py-24" data-meridian="Rooms">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div data-reveal>
+        <SectionHeading title="Inside the practice" />
       </div>
-      <div class="duotone duotone-gold aspect-square">
-        <img src={img(IMAGES.reception, 700)} alt="Reception desk at Meridian Family Health" class="h-full w-full object-cover" />
-      </div>
-      <div class="duotone duotone-gold aspect-square">
-        <img src={img(IMAGES.waitingRoom, 700)} alt="Comfortable seating in the patient waiting room" class="h-full w-full object-cover" />
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal>
+        <div class="duotone aspect-[16/10] sm:col-span-2 sm:row-span-2 sm:aspect-auto">
+          <img src={img(IMAGES.clinicInterior, 1200)} alt="The waiting area at Meridian Family Health" class="h-full w-full object-cover" />
+        </div>
+        <div class="duotone aspect-square">
+          <img src={img(IMAGES.reception, 700)} alt="The reception desk" class="h-full w-full object-cover" />
+        </div>
+        <div class="duotone aspect-square">
+          <img src={img(IMAGES.waitingRoom, 700)} alt="Seating in the patient waiting room" class="h-full w-full object-cover" />
+        </div>
       </div>
     </div>
   </section>
 
   <CTASection
-    title="Come see the difference for yourself"
-    description="Book a first visit and meet the doctor who will actually remember your name next time."
+    title="Meet the doctor you will keep seeing"
+    description="Book a first visit. The doctor you meet is the one you will see next time."
   />
 </Layout>

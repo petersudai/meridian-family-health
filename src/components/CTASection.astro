@@ -7,28 +7,18 @@ interface Props {
 }
 
 const {
-  title = "Ready to feel like more than a patient number?",
-  description = "Same-week appointments are open now. Tell us what you need and our care team will confirm within one business hour.",
+  title = "Book your first visit",
+  description = "Pick a time online. We confirm by email or phone within one business hour.",
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-night bg-chart-grid py-20 sm:py-28" data-meridian="Book">
-  <div class="relative mx-auto max-w-3xl px-6 text-center lg:px-8" data-reveal>
-    <p class="flex items-center justify-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold">
-      <span class="h-px w-4 bg-current"></span>
-      Same-week availability
-      <span class="h-px w-4 bg-current"></span>
-    </p>
-    <h2 class="mt-5 font-display text-3xl font-extrabold text-paper text-balance sm:text-4xl">{title}</h2>
-    <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-paper/65 sm:text-lg">{description}</p>
-    <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-      <BookingWidget client:load label="Book an Appointment" />
-      <a
-        href="/contact"
-        class="inline-flex items-center justify-center border border-paper/25 px-6 py-3 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:border-paper"
-      >
-        Contact the practice
-      </a>
+<section class="bg-night py-20 sm:py-24" data-meridian="Book" data-tone="dark">
+  <div class="mx-auto max-w-3xl px-6 lg:px-8" data-reveal>
+    <h2 class="font-display text-3xl font-extrabold text-paper text-balance sm:text-5xl">{title}</h2>
+    <p class="mt-4 max-w-xl text-lg leading-relaxed text-paper/75">{description}</p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <BookingWidget client:load label="Book an appointment" />
+      <a href="/contact" class="btn btn-secondary-dark">Send a message</a>
     </div>
   </div>
 </section>

@@ -2,46 +2,35 @@
 import Layout from "../layouts/Layout.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import CTASection from "../components/CTASection.astro";
-import Icon from "../components/Icon";
 import { TESTIMONIALS, SITE } from "../lib/site";
 ---
 
 <Layout
   title={`Patient Reviews | ${SITE.name}`}
-  description="Read what patients say about their experience at Meridian Family Health, from same-day urgent visits to long-term chronic care management."
+  description="What patients say about Meridian Family Health, from same-day urgent visits to long-term chronic care."
 >
-  <!-- Page hero -->
-  <section class="bg-paper bg-chart-grid-light" data-meridian="Reviews">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
-      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-        <span class="h-px w-4 bg-current"></span>
-        Patient reviews
-      </p>
-      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
+  <section class="border-b border-ink/10 bg-paper" data-meridian="Reviews">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <h1 class="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-ink text-balance sm:text-6xl">
         What our patients say.
       </h1>
-      <div class="mt-6 flex items-center gap-4 border-t border-ink/10 pt-5">
-        <span class="flex items-center gap-1.5 font-mono text-lg text-ink">
-          <Icon name="star" className="h-5 w-5 fill-current text-gold" />
-          4.9
-        </span>
-        <span class="h-4 w-px bg-ink/15"></span>
-        <span class="font-mono text-xs uppercase tracking-wide text-ink-soft">based on 640+ verified patient reviews</span>
-      </div>
+      <p class="mt-6 text-lg text-ink-soft">
+        <span class="font-semibold text-ink">4.9 out of 5</span> average across patient reviews.
+      </p>
     </div>
   </section>
 
-  <!-- Reviews grid -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="All reviews">
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+  <section class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-meridian="All reviews">
+    <div class="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
       {TESTIMONIALS.map((t) => (
         <TestimonialCard name={t.name} context={t.context} quote={t.quote} avatar={t.avatar as any} rating={t.rating} />
       ))}
     </div>
+    <p class="mt-14 text-sm text-ink-soft">Names, photos and reviews on this page are sample content for the demo.</p>
   </section>
 
   <CTASection
-    title="Add your own story"
-    description="Book your first visit and see why patients across the community are making Meridian their long-term care home."
+    title="Book your first visit"
+    description="Join the patients who have made Meridian their long-term care home."
   />
 </Layout>

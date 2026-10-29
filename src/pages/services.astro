@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CTASection from "../components/CTASection.astro";
-import Icon from "../components/Icon";
 import BookingWidget from "../components/BookingWidget";
 import { img, IMAGES } from "../lib/images";
 import { SERVICES, SITE } from "../lib/site";
@@ -18,41 +17,28 @@ const SERVICE_IMAGES: Record<string, keyof typeof IMAGES> = {
 
 <Layout
   title={`Services | ${SITE.name}`}
-  description="Explore primary care, pediatric care, women's health, chronic condition management, urgent visits, and telehealth at Meridian Family Health."
+  description="Primary care, pediatric care, women's health, chronic condition management, urgent visits and telehealth at Meridian Family Health."
 >
-  <!-- Page hero -->
-  <section class="bg-paper bg-chart-grid-light" data-meridian="Services">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
-      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-        <span class="h-px w-4 bg-current"></span>
-        Services
-      </p>
-      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
+  <section class="border-b border-ink/10 bg-paper" data-meridian="Services">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <h1 class="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-ink text-balance sm:text-6xl">
         Care for every stage of life, under one roof.
       </h1>
-      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
-        Six core services, one small team of physicians who coordinate your care instead of leaving it to
-        chance.
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+        Six kinds of visit, one small team that shares your chart.
       </p>
     </div>
   </section>
 
-  <!-- Service detail list -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
-    <div class="divide-y divide-ink/10">
+  <section class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+    <div class="divide-y divide-ink/15">
       {SERVICES.map((service, i) => (
-        <div id={service.slug} data-meridian={service.name} class="grid scroll-mt-28 gap-10 py-16 first:pt-0 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div id={service.slug} data-meridian={service.short} class="grid scroll-mt-24 gap-10 py-14 first:pt-0 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div class:list={[i % 2 === 1 && "lg:order-2"]} data-reveal>
-            <div class="flex items-center gap-4">
-              <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
-              <span class="flex h-11 w-11 items-center justify-center bg-ink text-gold">
-                <Icon name={service.icon as any} className="h-5 w-5" />
-              </span>
-            </div>
-            <h2 class="mt-5 font-display text-2xl font-extrabold text-ink sm:text-3xl">{service.name}</h2>
-            <p class="mt-4 text-base leading-relaxed text-ink-soft">{service.detail}</p>
-            <div class="mt-6">
-              <BookingWidget client:load label={`Book ${service.name}`} initialServiceSlug={service.slug} />
+            <h2 class="font-display text-3xl font-extrabold text-ink">{service.name}</h2>
+            <p class="mt-4 max-w-lg text-lg leading-relaxed text-ink-soft">{service.detail}</p>
+            <div class="mt-7">
+              <BookingWidget client:load label="Book this visit" initialServiceSlug={service.slug} />
             </div>
           </div>
           <div class:list={["duotone aspect-[4/3]", i % 2 === 1 && "lg:order-1"]} data-reveal>

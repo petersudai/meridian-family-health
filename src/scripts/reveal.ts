@@ -1,5 +1,5 @@
 function initReveal() {
-  const targets = document.querySelectorAll("[data-reveal], [data-reveal-group]");
+  const targets = document.querySelectorAll("[data-reveal]");
   if (!targets.length) return;
 
   const observer = new IntersectionObserver(

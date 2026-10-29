@@ -1,6 +1,5 @@
 ---
 import { img, IMAGES } from "../lib/images";
-import Icon from "./Icon";
 
 interface Props {
   name: string;
@@ -13,22 +12,15 @@ interface Props {
 const { name, context, quote, avatar, rating } = Astro.props;
 ---
 
-<figure class="flex h-full flex-col border-t-2 border-ink pt-6" data-reveal>
-  <div class="flex items-center justify-between">
-    <Icon name="quote" className="h-6 w-6 text-gold" />
-    <span class="flex items-center gap-1.5 font-mono text-xs text-ink-soft">
-      <Icon name="star" className="h-3.5 w-3.5 fill-current text-gold" />
-      {rating.toFixed(1)}
-    </span>
-  </div>
-  <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">&ldquo;{quote}&rdquo;</blockquote>
-  <figcaption class="mt-6 flex items-center gap-3 border-t border-ink/10 pt-5">
-    <div class="duotone duotone-gold h-10 w-10 flex-shrink-0 overflow-hidden rounded-full">
+<figure class="flex h-full flex-col border-t-2 border-ink pt-5" data-reveal>
+  <blockquote class="flex-1 text-lg leading-relaxed text-ink">&ldquo;{quote}&rdquo;</blockquote>
+  <figcaption class="mt-6 flex items-center gap-3">
+    <div class="duotone h-11 w-11 flex-shrink-0 overflow-hidden rounded-full">
       <img src={img(IMAGES[avatar], 160)} alt="" class="h-full w-full object-cover" loading="lazy" />
     </div>
     <div>
-      <p class="text-sm font-semibold text-ink">{name}</p>
-      <p class="font-mono text-[11px] uppercase tracking-wide text-ink-soft">{context}</p>
+      <p class="font-semibold text-ink">{name}</p>
+      <p class="text-sm text-ink-soft">{context}, rated {rating} out of 5</p>
     </div>
   </figcaption>
 </figure>

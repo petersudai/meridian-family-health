@@ -2,100 +2,78 @@
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm";
 import BookingWidget from "../components/BookingWidget";
-import Icon from "../components/Icon";
 import { img, IMAGES } from "../lib/images";
 import { SITE } from "../lib/site";
 ---
 
 <Layout
   title={`Contact Us | ${SITE.name}`}
-  description="Get in touch with Meridian Family Health, request an appointment, or find our hours, phone number, and location."
+  description="Contact Meridian Family Health: phone, email, location and opening hours, or request an appointment online."
 >
-  <!-- Page hero -->
-  <section class="bg-paper bg-chart-grid-light" data-meridian="Contact">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
-      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-        <span class="h-px w-4 bg-current"></span>
-        Contact
-      </p>
-      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
-        We would love to hear from you.
+  <section class="border-b border-ink/10 bg-paper" data-meridian="Contact">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <h1 class="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-ink text-balance sm:text-6xl">
+        Contact the practice.
       </h1>
-      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
-        Have a question, or ready to book? Reach the front desk directly, or send a message below.
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+        Call the front desk, send a message, or book a visit online.
       </p>
     </div>
   </section>
 
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Get in touch">
+  <section class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-meridian="Get in touch">
     <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-      <!-- Info column -->
-      <div class="space-y-px border border-ink/12 bg-ink/12" data-reveal>
-        <div class="bg-paper p-6">
-          <span class="flex h-10 w-10 items-center justify-center bg-ink/5 text-verdigris">
-            <Icon name="phone" className="h-4 w-4" />
-          </span>
-          <p class="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">Call the front desk</p>
-          <a href={SITE.phoneHref} class="mt-1 block font-display text-xl font-bold text-ink">{SITE.phone}</a>
-        </div>
+      <div data-reveal>
+        <dl class="border-t border-ink/25">
+          <div class="border-b border-ink/15 py-5">
+            <dt class="text-sm font-semibold text-ink-soft">Call the front desk</dt>
+            <dd class="mt-1"><a href={SITE.phoneHref} class="inline-block py-1 font-display text-2xl font-bold text-ink hover:underline">{SITE.phone}</a></dd>
+          </div>
+          <div class="border-b border-ink/15 py-5">
+            <dt class="text-sm font-semibold text-ink-soft">Email</dt>
+            <dd class="mt-1"><a href={`mailto:${SITE.email}`} class="inline-block py-1 text-lg font-semibold text-ink hover:underline">{SITE.email}</a></dd>
+          </div>
+          <div class="border-b border-ink/15 py-5">
+            <dt class="text-sm font-semibold text-ink-soft">Visit</dt>
+            <dd class="mt-1 text-lg text-ink">{SITE.address.line1}<br />{SITE.address.line2}</dd>
+          </div>
+          <div class="border-b border-ink/15 py-5">
+            <dt class="text-sm font-semibold text-ink-soft">Hours</dt>
+            <dd class="mt-2">
+              <ul class="space-y-1.5">
+                {SITE.hours.map((h) => (
+                  <li class="flex justify-between gap-6">
+                    <span class="text-ink">{h.day}</span>
+                    <span class="text-right text-ink-soft">{h.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        </dl>
 
-        <div class="bg-paper p-6">
-          <span class="flex h-10 w-10 items-center justify-center bg-ink/5 text-verdigris">
-            <Icon name="mail" className="h-4 w-4" />
-          </span>
-          <p class="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">Email us</p>
-          <a href={`mailto:${SITE.email}`} class="mt-1 block font-display text-xl font-bold text-ink">{SITE.email}</a>
-        </div>
-
-        <div class="bg-paper p-6">
-          <span class="flex h-10 w-10 items-center justify-center bg-ink/5 text-verdigris">
-            <Icon name="mappin" className="h-4 w-4" />
-          </span>
-          <p class="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">Visit the practice</p>
-          <p class="mt-1 font-display text-xl font-bold text-ink">{SITE.address.line1}</p>
-          <p class="text-ink-soft">{SITE.address.line2}</p>
-        </div>
-
-        <div class="bg-paper p-6">
-          <span class="flex h-10 w-10 items-center justify-center bg-ink/5 text-verdigris">
-            <Icon name="clock" className="h-4 w-4" />
-          </span>
-          <p class="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft">Hours</p>
-          <ul class="mt-2 space-y-1.5 text-sm text-ink-soft">
-            {SITE.hours.map((h) => (
-              <li class="flex justify-between gap-6"><span class="text-ink">{h.day}</span><span class="font-mono text-xs">{h.time}</span></li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="bg-night bg-chart-grid p-6 text-center">
-          <p class="font-display text-lg font-bold text-paper">Prefer to book directly?</p>
-          <div class="mt-4 flex justify-center">
-            <BookingWidget client:load label="Book an Appointment" />
+        <div class="mt-8 bg-night p-6" data-tone="dark">
+          <p class="font-display text-lg font-bold text-paper">Prefer to book online?</p>
+          <div class="mt-4">
+            <BookingWidget client:load label="Book an appointment" />
           </div>
         </div>
       </div>
 
-      <!-- Form column -->
       <div data-reveal>
         <ContactForm client:load />
       </div>
     </div>
   </section>
 
-  <!-- Location visual -->
-  <section class="duotone relative">
-    <div class="aspect-[16/6] w-full">
-      <img
-        src={img(IMAGES.reception, 1800)}
-        alt={`Reception area at ${SITE.name}`}
-        class="h-full w-full object-cover"
-      />
+  <section class="duotone relative" data-tone="dark">
+    <div class="aspect-[16/7] min-h-64 w-full">
+      <img src={img(IMAGES.reception, 1800)} alt={`The reception area at ${SITE.name}`} class="h-full w-full object-cover" />
     </div>
     <div class="absolute inset-0 z-10 flex items-center">
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
         <p class="max-w-md font-display text-2xl font-bold text-paper text-balance sm:text-3xl">
-          Free parking, wheelchair access, and a front desk team that will greet you by name.
+          Free parking and step-free access. The front desk will greet you by name.
         </p>
       </div>
     </div>

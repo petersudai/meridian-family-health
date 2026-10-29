@@ -2,58 +2,78 @@ import { useEffect, useRef, useState } from "react";
 
 interface Waypoint {
   label: string;
-  top: number;
   percent: number;
 }
+
+const BOTTOM_GAP = 24;
 
 export default function MeridianLine() {
   const [waypoints, setWaypoints] = useState<Waypoint[]>([]);
   const [progress, setProgress] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const rafRef = useRef<number | null>(null);
+  const [label, setLabel] = useState("");
+  const [onDark, setOnDark] = useState(false);
+  const [top, setTop] = useState(73);
+  const frame = useRef<number | null>(null);
 
   useEffect(() => {
+    function railBox() {
+      const header = document.querySelector("header");
+      const headerH = header ? header.getBoundingClientRect().height : 73;
+      return { headerH, railH: window.innerHeight - headerH - BOTTOM_GAP };
+    }
+
     function measure() {
-      const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-meridian]"));
+      const { headerH } = railBox();
+      setTop(headerH);
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-meridian]"));
       if (docHeight <= 0 || nodes.length === 0) {
         setWaypoints([]);
         return;
       }
-      const points = nodes.map((el) => {
-        const top = el.getBoundingClientRect().top + window.scrollY;
-        return { label: el.dataset.meridian || "", top, percent: Math.min(100, (top / docHeight) * 100) };
-      });
-      setWaypoints(points);
+      setWaypoints(
+        nodes.map((el) => ({
+          label: el.dataset.meridian || "",
+          percent: Math.min(100, Math.max(0, ((el.getBoundingClientRect().top + window.scrollY) / docHeight) * 100)),
+        }))
+      );
+    }
+
+    function update() {
+      frame.current = null;
+      const { headerH, railH } = railBox();
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
+      setProgress(pct);
+
+      const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-meridian]"));
+      const cutoff = window.scrollY + window.innerHeight * 0.35;
+      let current = nodes[0];
+      for (const el of nodes) {
+        if (el.getBoundingClientRect().top + window.scrollY <= cutoff) current = el;
+      }
+      setLabel(current?.dataset.meridian || "");
+
+      // Read what is actually behind the label so it stays legible on dark sections.
+      const y = headerH + (railH * pct) / 100;
+      const behind = document.elementFromPoint(window.innerWidth / 2, Math.min(y, window.innerHeight - 1));
+      setOnDark(behind?.closest("[data-tone]")?.getAttribute("data-tone") === "dark");
     }
 
     function onScroll() {
-      if (rafRef.current) return;
-      rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = null;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? Math.min(100, (window.scrollY / docHeight) * 100) : 0;
-        setProgress(pct);
-
-        const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-meridian]"));
-        let idx = 0;
-        const cutoff = window.scrollY + window.innerHeight * 0.25;
-        nodes.forEach((el, i) => {
-          const top = el.getBoundingClientRect().top + window.scrollY;
-          if (top <= cutoff) idx = i;
-        });
-        setActiveIndex(idx);
-      });
+      if (frame.current === null) frame.current = requestAnimationFrame(update);
     }
 
     measure();
-    onScroll();
-    window.addEventListener("resize", measure);
+    update();
+    window.addEventListener("resize", () => {
+      measure();
+      onScroll();
+    });
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (frame.current !== null) cancelAnimationFrame(frame.current);
     };
   }, []);
 
@@ -61,35 +81,31 @@ export default function MeridianLine() {
 
   return (
     <div
-      className="pointer-events-none fixed left-8 top-0 z-30 hidden h-screen w-px xl:block"
       aria-hidden="true"
+      className="pointer-events-none fixed left-3 z-30 hidden w-px lg:block"
+      style={{ top, bottom: BOTTOM_GAP }}
     >
-      <div className="absolute left-0 top-0 h-full w-px bg-ink/12" />
-      <div
-        className="absolute left-0 top-0 w-px bg-gold transition-[height] duration-150 ease-out"
-        style={{ height: `${progress}%` }}
-      />
-
+      {/* Track and ticks use difference blending so they read on both light and dark sections */}
+      <div className="absolute inset-y-0 left-0 w-px bg-white/30 mix-blend-difference" />
       {waypoints.map((wp, i) => (
-        <div
+        <span
           key={i}
-          className="absolute left-0 flex items-center gap-2.5"
+          className="absolute left-0 block h-px w-1.5 bg-white/60 mix-blend-difference"
           style={{ top: `${wp.percent}%` }}
-        >
-          <span
-            className={`h-px transition-all duration-300 ${
-              i === activeIndex ? "w-3 bg-gold-dark" : "w-1.5 bg-ink/40"
-            }`}
-          />
-          <span
-            className={`font-mono text-[11px] uppercase tracking-[0.16em] transition-colors duration-300 ${
-              i === activeIndex ? "font-medium text-ink" : "text-ink-soft"
-            }`}
-          >
-            {wp.label}
-          </span>
-        </div>
+        />
       ))}
+
+      <div className="absolute left-0 top-0 w-px bg-gold" style={{ height: `${progress}%` }} />
+      <div className="absolute left-0 flex items-center" style={{ top: `${progress}%` }}>
+        <span className="-ml-[3px] block h-[7px] w-[7px] bg-gold" />
+        <span
+          className={`ml-3 hidden whitespace-nowrap text-xs font-semibold min-[1400px]:block ${
+            onDark ? "text-paper" : "text-ink"
+          }`}
+        >
+          {label}
+        </span>
+      </div>
     </div>
   );
 }

@@ -7,31 +7,23 @@ import { DOCTORS, SITE } from "../lib/site";
 
 <Layout
   title={`Our Team | ${SITE.name}`}
-  description="Meet the physicians and nurse practitioners at Meridian Family Health, a small team dedicated to knowing every patient by name."
+  description="Meet the physicians and nurse practitioners at Meridian Family Health, a small team that knows every patient by name."
 >
-  <!-- Page hero -->
-  <section class="bg-paper bg-chart-grid-light" data-meridian="Team">
-    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-reveal>
-      <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-        <span class="h-px w-4 bg-current"></span>
-        Our team
-      </p>
-      <h1 class="mt-4 max-w-2xl font-display text-4xl font-extrabold text-ink text-balance sm:text-5xl">
+  <section class="border-b border-ink/10 bg-paper" data-meridian="Team">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <h1 class="max-w-3xl font-display text-4xl font-extrabold leading-[1.05] text-ink text-balance sm:text-6xl">
         A small team, on purpose.
       </h1>
-      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
-        We keep our patient panels smaller than most practices so every doctor here has time to actually know
-        you. Here is who you will see.
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+        Our patient panels are smaller than most practices, so every doctor has time to know you. Here is who you will see.
       </p>
     </div>
   </section>
 
-  <!-- Team grid -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Roster">
-    <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+  <section class="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8" data-meridian="Doctors">
+    <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
       {DOCTORS.map((doctor) => (
         <DoctorCard
-          slug={doctor.slug}
           name={doctor.name}
           role={doctor.role}
           bio={doctor.bio}
@@ -43,7 +35,7 @@ import { DOCTORS, SITE } from "../lib/site";
   </section>
 
   <CTASection
-    title="Ready to meet your new doctor?"
-    description="Choose a provider, or let us match you with the first available physician for your visit."
+    title="Choose your doctor"
+    description="Pick a provider when you book, or let us match you with the first available."
   />
 </Layout>

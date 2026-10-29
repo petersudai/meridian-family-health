@@ -1,31 +1,30 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..900;1,400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400..900;1,400..700&display=swap");
 @import "tailwindcss";
 
+/*
+  Usage rules
+  - Gold: primary buttons, the meridian rail, the active-nav bar. Never text on light backgrounds.
+  - Verdigris: links and roles on light backgrounds.
+  - Ink and paper carry everything else. One typeface family (Archivo), no mono.
+*/
 @theme {
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Paper -- cool chart-paper neutral, not the warm-cream AI default */
   --color-paper: #edf0ee;
-  --color-paper-warm: #f5f4ee;
+  --color-paper-warm: #f6f5ef;
   --color-white: #ffffff;
 
-  /* Ink -- near-black navy, never pure black */
   --color-ink: #10151b;
   --color-ink-soft: #4a525b;
 
-  /* Night -- dark instrument-panel sections */
   --color-night: #10151b;
-  --color-night-soft: #1a2129;
-  --color-night-line: rgba(237, 240, 238, 0.14);
+  --color-night-line: rgba(237, 240, 238, 0.16);
 
-  /* Gold -- signature accent, meridian / solar-noon reference */
   --color-gold: #c8912b;
   --color-gold-dark: #a8761f;
   --color-gold-light: #f0dfb8;
 
-  /* Verdigris -- secondary accent, aged brass-instrument patina */
   --color-verdigris: #4c6b63;
   --color-verdigris-dark: #38504a;
   --color-verdigris-light: #dde6e2;
@@ -39,15 +38,12 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  line-height: 1.6;
 }
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.01em;
-}
-
-.font-mono {
-  font-family: var(--font-mono);
+  letter-spacing: -0.015em;
 }
 
 .text-balance {
@@ -60,29 +56,98 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-ink);
   outline-offset: 3px;
+}
+[data-tone="dark"] :focus-visible,
+[data-tone="dark"]:focus-visible,
+footer :focus-visible {
+  outline-color: var(--color-gold);
 }
 
 .skip-link {
   position: absolute;
-  top: -3rem;
+  top: -4rem;
   left: 1rem;
   z-index: 100;
   background-color: var(--color-ink);
   color: var(--color-paper);
   padding: 0.75rem 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-weight: 600;
   transition: top 0.2s ease;
 }
 .skip-link:focus {
   top: 1rem;
 }
 
-/* Duotone photography -- every photo reads as one brand system */
+/* Buttons and links. In the components layer so utility classes can still override them. */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+  .btn-primary {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-ink);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--color-gold-dark);
+    border-color: var(--color-gold-dark);
+  }
+  .btn-secondary {
+    border-color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+    color: var(--color-ink);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn-secondary-dark {
+    border-color: color-mix(in srgb, var(--color-paper) 55%, transparent);
+    color: var(--color-paper);
+  }
+  .btn-secondary-dark:hover:not(:disabled) {
+    background-color: var(--color-paper);
+    border-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    font-weight: 600;
+    color: var(--color-verdigris-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+  .link-dark {
+    color: var(--color-paper);
+  }
+}
+
+/* Photography: one ink duotone so varied stock reads as one set */
 .duotone {
   position: relative;
   overflow: hidden;
@@ -101,75 +166,25 @@ body {
   opacity: 0.6;
   pointer-events: none;
 }
-.duotone.duotone-gold::after {
-  background: var(--color-gold);
-  opacity: 0.4;
-}
-.duotone.duotone-paper::after {
-  background: var(--color-paper);
-  opacity: 0.18;
-  mix-blend-mode: overlay;
-}
 
-/* Scroll reveal -- vanilla JS toggles .is-in via IntersectionObserver */
+/* One simple fade on scroll; JS adds .is-in */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(14px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 [data-reveal].is-in {
   opacity: 1;
   transform: translateY(0);
 }
-[data-reveal-group] > * {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-[data-reveal-group].is-in > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-[data-reveal-group].is-in > *:nth-child(1) { transition-delay: 0ms; }
-[data-reveal-group].is-in > *:nth-child(2) { transition-delay: 70ms; }
-[data-reveal-group].is-in > *:nth-child(3) { transition-delay: 140ms; }
-[data-reveal-group].is-in > *:nth-child(4) { transition-delay: 210ms; }
-[data-reveal-group].is-in > *:nth-child(5) { transition-delay: 280ms; }
-[data-reveal-group].is-in > *:nth-child(6) { transition-delay: 350ms; }
-
-/* Chart-grid texture -- blueprint hairline grid, used in place of decorative blur blobs */
-.bg-chart-grid {
-  background-image: linear-gradient(var(--color-night-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-night-line) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-.bg-chart-grid-light {
-  background-image: linear-gradient(color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 7%, transparent) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal],
-  [data-reveal-group] > * {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .animate-marquee {
-    animation: none;
-  }
-}
-
-/* Ticker marquee -- duplicate content once, scroll by exactly half */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-marquee {
-  animation: marquee 32s linear infinite;
 }

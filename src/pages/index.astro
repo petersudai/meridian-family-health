@@ -1,191 +1,183 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import ServiceCard from "../components/ServiceCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import CTASection from "../components/CTASection.astro";
 import BookingWidget from "../components/BookingWidget";
 import Icon from "../components/Icon";
 import { img, IMAGES } from "../lib/images";
-import { SERVICES, STATS, DOCTORS, TESTIMONIALS, VALUES, SITE } from "../lib/site";
+import { SERVICES, DOCTORS, TESTIMONIALS, VALUES, FIRST_VISIT, SITE } from "../lib/site";
 
 const leadDoctor = DOCTORS[0];
-const ticker = [
-  "12,400+ PATIENTS CARED FOR",
-  "18 YEARS SERVING CEDAR FALLS",
-  "SAME-WEEK APPOINTMENTS",
-  "4.9 / 5 AVERAGE RATING",
-  "TRANSPARENT PRICING, NO SURPRISES",
-];
 ---
 
 <Layout
-  title={`${SITE.name} | Modern Family Medicine, Without the Wait`}
-  description="Meridian Family Health offers same-week appointments, whole-family primary care, and doctors who know your name. Book your visit online today."
+  title={`${SITE.name} | Family Medicine in Cedar Falls`}
+  description="Meridian Family Health offers same-week appointments, whole-family primary care and doctors who know your name. Book your visit online."
 >
   <!-- Hero -->
-  <section class="relative overflow-hidden bg-paper bg-chart-grid-light" data-meridian="Home">
-    <div class="mx-auto grid max-w-7xl gap-x-10 gap-y-14 px-6 pt-14 sm:pt-20 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-16 lg:px-8 lg:pb-8 lg:pt-24">
-      <div data-reveal>
-        <p class="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-gold-dark">
-          <span class="h-px w-4 bg-current"></span>
-          Est. 2008 &mdash; Cedar Falls
-        </p>
-        <h1 class="mt-6 font-display text-[13vw] font-extrabold leading-[1.08] tracking-tight text-ink text-balance sm:text-6xl sm:leading-[0.95] lg:text-[4.6rem]">
-          Family medicine, <span class="text-gold-dark">calibrated</span> to a lifetime.
+  <section class="bg-paper" data-meridian="Home">
+    <div class="mx-auto grid max-w-7xl gap-x-12 gap-y-12 px-6 pt-12 sm:pt-16 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16 lg:px-8 lg:pt-20">
+      <div>
+        <h1 class="font-display text-[13vw] font-extrabold leading-[1.08] tracking-tight text-ink text-balance sm:text-6xl sm:leading-[1] lg:text-[4.6rem]">
+          Family medicine, calibrated to a lifetime.
         </h1>
         <p class="mt-7 max-w-lg text-lg leading-relaxed text-ink-soft">
-          {SITE.name} brings modern, whole-person primary care to every stage of life, from first checkups to
-          golden years, with same-week appointments and doctors who actually remember your name.
+          Primary care for the whole family in Cedar Falls. Most patients are seen within 48 hours, and you see the
+          same small team of doctors every visit.
         </p>
         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-          <BookingWidget client:load label="Book an Appointment" />
-          <a
-            href="/team"
-            class="inline-flex items-center justify-center gap-2 border border-ink/20 px-6 py-3 font-mono text-xs uppercase tracking-[0.12em] text-ink transition hover:border-ink"
-          >
-            Meet our doctors
-          </a>
+          <BookingWidget client:load label="Book an appointment" />
+          <a href="/team" class="btn btn-secondary">Meet our doctors</a>
         </div>
-        <div class="mt-10 flex items-center gap-4 border-t border-ink/10 pt-6 text-sm text-ink-soft">
-          <span class="flex items-center gap-1.5 font-mono text-ink">
-            <Icon name="star" className="h-4 w-4 fill-current text-gold" />
-            4.9
-          </span>
-          <span class="h-4 w-px bg-ink/15"></span>
-          <span class="font-mono text-xs uppercase tracking-wide">12,400+ patients since 2008</span>
-        </div>
+        <a href="/reviews" class="link mt-6">
+          Rated 4.9 out of 5 by patients
+          <Icon className="h-4 w-4" />
+        </a>
       </div>
 
-      <div class="relative" data-reveal>
-        <div class="duotone aspect-[4/5]">
-          <img
-            src={img(IMAGES.heroPortrait, 1400)}
-            alt="Physician in a mask and white coat at Meridian Family Health"
-            class="h-full w-full object-cover"
-          />
-        </div>
-        <div class="absolute bottom-0 left-0 flex items-center gap-2 bg-ink px-3 py-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
-          <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-paper/85">On call &mdash; Exam Room 2</span>
-        </div>
+      <div class="duotone aspect-[4/5]">
+        <img
+          src={img(IMAGES.heroPortrait, 1400)}
+          alt="A physician in a surgical cap and mask looking down at work"
+          class="h-full w-full object-cover"
+        />
       </div>
     </div>
 
-    <div class="mt-14 border-y border-ink/10 bg-ink py-3.5 lg:mt-8" aria-hidden="true">
-      <div class="flex overflow-hidden">
-        <div class="flex flex-none animate-marquee items-center gap-10 whitespace-nowrap pr-10">
-          {[...ticker, ...ticker].map((item) => (
-            <span class="flex items-center gap-10 font-mono text-[11px] uppercase tracking-[0.16em] text-paper/70">
-              {item}
-              <span class="text-gold">&bull;</span>
-            </span>
-          ))}
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <dl class="mt-14 grid gap-x-8 gap-y-5 border-t border-ink/20 py-7 sm:grid-cols-3">
+        <div>
+          <dt class="text-sm font-semibold text-ink-soft">Hours</dt>
+          <dd class="mt-1 text-ink">Monday to Friday, 8 AM to 6 PM<br />Saturday, 9 AM to 1 PM</dd>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Numbers -->
-  <section class="bg-night bg-chart-grid" data-meridian="Numbers">
-    <div class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-night-line px-6 sm:grid-cols-4 sm:divide-y-0 lg:px-8" data-reveal-group>
-      {STATS.map((stat) => (
-        <div class="px-2 py-12 text-center sm:px-4">
-          <p class="font-display text-4xl font-extrabold text-gold sm:text-5xl">{stat.value}</p>
-          <p class="mt-2 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/55">{stat.label}</p>
+        <div>
+          <dt class="text-sm font-semibold text-ink-soft">Call the front desk</dt>
+          <dd class="mt-1"><a href={SITE.phoneHref} class="inline-block py-1 font-semibold text-ink hover:underline">{SITE.phone}</a></dd>
         </div>
-      ))}
+        <div>
+          <dt class="text-sm font-semibold text-ink-soft">Visit</dt>
+          <dd class="mt-1 text-ink">{SITE.address.line1}<br />{SITE.address.line2}</dd>
+        </div>
+      </dl>
     </div>
   </section>
 
   <!-- Services -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8" data-meridian="Services">
-    <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-      <SectionHeading
-        eyebrow="What we treat"
-        title="Care for every member of the family"
-        description="From newborn checkups to chronic condition management, our physicians cover the visits that matter most, in one place."
-      />
-      <a href="/services" class="hidden shrink-0 items-center gap-1.5 font-mono text-xs uppercase tracking-[0.12em] text-ink transition hover:text-gold-dark sm:inline-flex">
-        View all services
-        <Icon name="arrowright" className="h-3.5 w-3.5" />
-      </a>
-    </div>
+  <section class="bg-paper-warm py-20 sm:py-24" data-meridian="Services">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div data-reveal>
+        <SectionHeading
+          title="Six kinds of visit, one care team"
+          description="From newborn checkups to long-term conditions, one practice handles it and your records stay in one place."
+        />
+      </div>
 
-    <div class="mt-12 grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2 lg:grid-cols-3">
-      {SERVICES.map((service, i) => (
-        <ServiceCard name={service.name} summary={service.summary} icon={service.icon as any} href={`/services#${service.slug}`} index={i + 1} />
-      ))}
+      <ul class="mt-12 grid border-t border-ink/25 md:grid-cols-2 md:gap-x-16" data-reveal>
+        {SERVICES.map((service) => (
+          <li class="border-b border-ink/15">
+            <a href={`/services#${service.slug}`} class="group flex items-start justify-between gap-6 py-6">
+              <span>
+                <span class="block font-display text-xl font-bold text-ink group-hover:underline">{service.name}</span>
+                <span class="mt-1.5 block max-w-md text-ink-soft">{service.summary}</span>
+              </span>
+              <Icon className="mt-1.5 h-5 w-5 flex-shrink-0 text-ink transition-transform group-hover:translate-x-1" />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <!-- Why choose us -->
-  <section class="bg-paper-warm py-20 sm:py-24" data-meridian="Why Us">
-    <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16 lg:px-8">
-      <div>
+  <!-- Approach -->
+  <section class="bg-paper py-20 sm:py-24" data-meridian="Approach">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-20 lg:px-8">
+      <div data-reveal>
         <SectionHeading
-          eyebrow="Why patients switch to us"
-          title="Healthcare that treats you like a person, not an appointment slot"
-          description="We built Meridian around the things patients told us were missing everywhere else: time, continuity, and honesty about cost."
+          title="A practice built around time, continuity and honest costs"
+          description="We built Meridian around three things: enough time, the same doctor, and a price you know in advance."
         />
-        <a href="/about" class="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition hover:text-gold-dark">
-          Learn about our approach
-          <Icon name="arrowright" className="h-3.5 w-3.5" />
+        <a href="/about" class="link mt-6">
+          How the practice works
+          <Icon className="h-4 w-4" />
         </a>
       </div>
-      <div class="grid gap-px border border-ink/12 bg-ink/12 sm:grid-cols-2" data-reveal-group>
-        {VALUES.map((value, i) => (
-          <div class="bg-paper p-6">
-            <span class="font-mono text-xs text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
-            <span class="mt-3 flex h-9 w-9 items-center justify-center bg-ink/5 text-verdigris">
-              <Icon name={value.icon as any} className="h-[18px] w-[18px]" />
-            </span>
-            <h3 class="mt-4 font-display text-base font-bold text-ink">{value.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-soft">{value.description}</p>
+      <dl class="grid border-t border-ink/25 sm:grid-cols-2 sm:gap-x-10" data-reveal>
+        {VALUES.map((value) => (
+          <div class="border-b border-ink/15 py-6">
+            <dt class="font-display text-lg font-bold text-ink">{value.title}</dt>
+            <dd class="mt-1.5 text-ink-soft">{value.description}</dd>
           </div>
         ))}
-      </div>
+      </dl>
     </div>
   </section>
 
-  <!-- Doctor highlight -->
-  <section class="bg-night bg-chart-grid py-20 sm:py-24" data-meridian="Care Team">
+  <!-- Doctor -->
+  <section class="bg-night py-20 sm:py-24" data-meridian="Care team" data-tone="dark">
     <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16 lg:px-8">
-      <div class="duotone duotone-gold aspect-[4/5]" data-reveal>
+      <div class="duotone aspect-[4/5]" data-reveal>
         <img src={img(IMAGES[leadDoctor.image as keyof typeof IMAGES], 900)} alt={leadDoctor.name} class="h-full w-full object-cover" />
       </div>
       <div data-reveal>
-        <Icon name="quote" className="h-9 w-9 text-gold" />
-        <p class="mt-4 font-display text-2xl font-medium leading-snug text-paper text-balance sm:text-3xl">
-          &ldquo;Our job is not just to treat what&rsquo;s wrong. It&rsquo;s to know you well enough to catch it before it becomes wrong.&rdquo;
-        </p>
-        <div class="mt-6 border-l-2 border-gold pl-4">
-          <p class="font-semibold text-paper">{leadDoctor.name}</p>
-          <p class="font-mono text-xs uppercase tracking-wide text-paper/70">{leadDoctor.role}</p>
-        </div>
-        <a href="/team" class="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:text-gold">
-          Meet the full care team
-          <Icon name="arrowright" className="h-3.5 w-3.5" />
-        </a>
+        <blockquote class="font-display text-3xl font-bold leading-snug text-paper text-balance sm:text-4xl">
+          &ldquo;I want to know you well enough to notice when something changes, long before it becomes a problem.&rdquo;
+        </blockquote>
+        <p class="mt-6 font-semibold text-paper">{leadDoctor.name}</p>
+        <p class="text-paper/75">{leadDoctor.role}</p>
+        <a href="/team" class="btn btn-secondary-dark mt-8">Meet the care team</a>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- First visit -->
+  <section class="bg-paper-warm py-20 sm:py-24" data-meridian="Visit">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.2fr_1fr] lg:gap-20 lg:px-8">
+      <div data-reveal>
+        <SectionHeading title="What to expect at your first visit" />
+        <ol class="mt-10 border-t border-ink/25">
+          {FIRST_VISIT.map((step, i) => (
+            <li class="grid grid-cols-[3rem_1fr] gap-4 border-b border-ink/15 py-6">
+              <span class="font-display text-3xl font-extrabold leading-none text-ink">{i + 1}</span>
+              <div>
+                <h3 class="font-display text-lg font-bold text-ink">{step.title}</h3>
+                <p class="mt-1 text-ink-soft">{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="self-start border border-ink/25 bg-white p-7" data-reveal>
+        <h3 class="font-display text-lg font-bold text-ink">Find us</h3>
+        <address class="mt-3 text-ink not-italic">{SITE.address.line1}<br />{SITE.address.line2}</address>
+        <p class="mt-4"><a href={SITE.phoneHref} class="inline-block py-1 font-semibold text-ink hover:underline">{SITE.phone}</a></p>
+        <ul class="mt-5 space-y-2 border-t border-ink/15 pt-5">
+          {SITE.hours.map((h) => (
+            <li class="flex justify-between gap-4">
+              <span class="text-ink-soft">{h.day}</span>
+              <span class="text-right text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
   <section class="bg-paper py-20 sm:py-24" data-meridian="Reviews">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <SectionHeading eyebrow="Patient stories" title="Trusted by families across the community" align="center" />
-      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+      <div data-reveal>
+        <SectionHeading title="What patients say" />
+      </div>
+      <div class="mt-12 grid gap-10 md:grid-cols-3">
         {TESTIMONIALS.slice(0, 3).map((t) => (
           <TestimonialCard name={t.name} context={t.context} quote={t.quote} avatar={t.avatar as any} rating={t.rating} />
         ))}
       </div>
-      <div class="mt-10 text-center">
-        <a href="/reviews" class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition hover:text-gold-dark">
-          Read more patient reviews
-          <Icon name="arrowright" className="h-3.5 w-3.5" />
-        </a>
-      </div>
+      <a href="/reviews" class="link mt-10">
+        Read more patient reviews
+        <Icon className="h-4 w-4" />
+      </a>
     </div>
   </section>
 

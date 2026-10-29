@@ -1,5 +1,9 @@
 import { useState, type FormEvent } from "react";
-import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
+
+const field =
+  "w-full border border-ink/40 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-gold";
+const labelCls = "mb-1.5 block text-sm font-semibold text-ink";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -20,60 +24,36 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="flex flex-col items-center border border-ink/12 bg-paper px-8 py-16 text-center">
-        <span className="flex h-14 w-14 items-center justify-center bg-ink text-gold">
-          <CheckCircle2 className="h-7 w-7" />
-        </span>
-        <h3 className="mt-5 font-display text-2xl font-bold text-ink">Message sent</h3>
-        <p className="mt-2 max-w-sm text-sm text-ink-soft">
-          Thanks, {name.split(" ")[0] || "there"}. Our front desk team will get back to you within one business
-          day.
+      <div className="border border-ink/25 bg-white p-8" role="status">
+        <h3 className="font-display text-2xl font-bold text-ink">Message sent</h3>
+        <p className="mt-3 max-w-sm text-ink-soft">
+          Thanks, {name.split(" ")[0] || "there"}. The front desk will reply within one business day.
         </p>
-        <p className="mt-4 font-mono text-[11px] text-ink-soft">This is a portfolio demo. No message has actually been sent.</p>
+        <p className="mt-4 text-sm text-ink-soft">This is a portfolio demo. No message has been sent.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border border-ink/12 bg-paper p-8">
+    <form onSubmit={handleSubmit} className="border border-ink/25 bg-white p-6 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
-        <div className="sm:col-span-1">
-          <label htmlFor="contact-name" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
-            Full name <span aria-hidden="true" className="text-ink">*</span>
+        <div>
+          <label htmlFor="contact-name" className={labelCls}>
+            Full name <span aria-hidden="true">*</span>
           </label>
-          <input
-            id="contact-name"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Jordan Lee"
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
-          />
+          <input id="contact-name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Jordan Lee" autoComplete="name" className={field} />
         </div>
-        <div className="sm:col-span-1">
-          <label htmlFor="contact-email" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
-            Email <span aria-hidden="true" className="text-ink">*</span>
+        <div>
+          <label htmlFor="contact-email" className={labelCls}>
+            Email <span aria-hidden="true">*</span>
           </label>
-          <input
-            id="contact-email"
-            required
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@email.com"
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
-          />
+          <input id="contact-email" required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" autoComplete="email" className={field} />
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="contact-reason" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
+          <label htmlFor="contact-reason" className={labelCls}>
             Reason for contact
           </label>
-          <select
-            id="contact-reason"
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink focus:border-gold-dark focus:outline-none"
-          >
+          <select id="contact-reason" value={reason} onChange={(e) => setReason(e.target.value)} className={field}>
             <option>General question</option>
             <option>New patient enquiry</option>
             <option>Existing patient support</option>
@@ -82,27 +62,15 @@ export default function ContactForm() {
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label htmlFor="contact-message" className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft">
-            Message <span aria-hidden="true" className="text-ink">*</span>
+          <label htmlFor="contact-message" className={labelCls}>
+            Message <span aria-hidden="true">*</span>
           </label>
-          <textarea
-            id="contact-message"
-            required
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={5}
-            placeholder="How can we help?"
-            className="w-full border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-gold-dark focus:outline-none"
-          />
+          <textarea id="contact-message" required value={message} onChange={(e) => setMessage(e.target.value)} rows={5} placeholder="How can we help?" className={field} />
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className="mt-6 inline-flex items-center gap-2 border border-ink bg-ink px-7 py-3 font-mono text-xs uppercase tracking-[0.12em] text-paper transition hover:bg-transparent hover:text-ink disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
-      >
-        {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+      <button type="submit" disabled={submitting} className="btn btn-primary mt-6">
+        {submitting && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />}
         {submitting ? "Sending" : "Send message"}
       </button>
     </form>
